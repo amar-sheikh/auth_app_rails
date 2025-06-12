@@ -35,8 +35,13 @@
     </div>
     <div class='row'>
       <div class='col-2 h-100 min-vh-100 bg-light'>
-        <div class="py-3 d-flex flex-col">
-          <%= link_to 'Root', root_path, class:'py-2 px-4 d-block text-decoration-none text-primary bg-light' %>
+        <div class="py-3 d-flex flex-column">
+          <div>
+            <%= link_to 'Current Address', root_path, class:'py-2 px-4 d-block text-decoration-none text-primary bg-light' %>
+          </div>
+          <div>
+            <%= link_to 'Transactions', transactions_path, class:'py-2 px-4 d-block text-decoration-none text-primary bg-light' %>
+          </div>
         </div>
       </div>
       <div class='col-10 p-3'>

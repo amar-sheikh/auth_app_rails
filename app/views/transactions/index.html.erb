@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Transactions" %>
+
+<h1>Transactions</h1>
+
+<div id="transactions">
+  <table>
+    <thead>
+        <tr>
+          <th class='px-3'>#</th>
+          <th class='px-3'>Address ID</th>
+          <th class='px-3'>Idempotency key</th>
+          <th class='px-3'>Amount</th>
+          <th class='px-3'>Additional info</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <%= render transaction %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New transaction", new_transaction_path %>
