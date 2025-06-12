@@ -25,7 +25,7 @@
             <%= current_user.email[0].upcase %>
           </div>
           <ul class="dropdown-menu">
-            <li><%= button_to "Edit Profile", edit_user_password_path, class: 'btn w-100', method: :get %></li>
+            <li><%= button_to "Edit Profile", edit_users_profile_path, class: 'btn w-100', method: :get %></li>
             <li><%= button_to "Sign out", destroy_user_session_path, class: 'btn w-100', method: :delete %></li>
           </ul>
         </div>
