@@ -21,14 +21,33 @@
     <%= f.password_field :current_password, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+  <div data-controller="disable-logout">
+    <div class="mb-3">
+      <%= f.label :password %>
+      <%= f.password_field :password,
+            class: "form-control",
+            data: {
+              disable_logout_target: 'password',
+              action: 'input->disable-logout#toggleLogoutCheckbox'
+            } %>
+    </div>
 
-  <div class="mb-3">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
+    <div class="mb-3">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation,
+            class: "form-control",
+            data: {
+              disable_logout_target: 'confirmPassword',
+              action: 'input->disable-logout#toggleLogoutCheckbox'
+            } %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag 'log_out_of_all_devices' do %>
+        <%= check_box_tag 'log_out_of_all_devices', '1', false, data: { disable_logout_target: 'logoutCheckbox' } %>
+        <%= t('.log_out_of_all_devices', default: 'Log out of all devices') %>
+      <% end %>
+    </div>
   </div>
 
   <%= f.submit "Update Profile", class: "btn btn-primary" %>
