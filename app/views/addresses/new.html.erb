@@ -1,0 +1,44 @@
+<%= form_with(model: @address, url: addresses_path, html: { method: :post }) do |form| %>
+  <% if @address.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+        <% @address.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= form.label :line1, style: "display: block" %>
+    <%= form.text_field :line1 %>
+  </div>
+
+  <div>
+    <%= form.label :line2, style: "display: block" %>
+    <%= form.text_field :line2 %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div>
+    <%= form.label :postcode, style: "display: block" %>
+    <%= form.text_field :postcode %>
+  </div>
+
+  <div>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>

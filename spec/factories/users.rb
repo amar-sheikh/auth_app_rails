@@ -31,5 +31,15 @@ FactoryBot.define do
         build_confirmed { false }
       end
     end
+
+    transient do
+      current_address { nil }
+    end
+
+    after(:create) do |user, evaluator|
+      if evaluator.current_address
+        user.update!(current_address: evaluator.current_address)
+      end
+    end
   end
 end

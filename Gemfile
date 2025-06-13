@@ -65,4 +65,5 @@ group :test do
   gem 'rails-controller-testing'
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'shoulda-matchers'
 end

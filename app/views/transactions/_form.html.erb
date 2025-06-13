@@ -1,0 +1,31 @@
+<%= form_with(model: transaction) do |form| %>
+  <% if transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :address_id, value: current_user.current_address_id %>
+  <%= form.hidden_field :idempotency_key, value: SecureRandom.hex(8) %>
+
+  <div>
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div>
+    <%= form.label :additional_info, style: "display: block" %>
+    <%= form.text_field :additional_info %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
