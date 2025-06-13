@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
+  has_many :addresses
   belongs_to :current_address, class_name: 'Address', optional: true
 end
