@@ -1,6 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe User, type: :model do
+  describe 'association' do
+    it { should have_many(:addresses) }
+    it { should belong_to(:current_address).class_name('Address').optional(true) }
+  end
+
   describe 'validation' do
     context 'with valid data' do
       subject(:user) { build(:user) }
