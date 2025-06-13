@@ -21,14 +21,33 @@
     <%= f.password_field :current_password, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control" %>
-  </div>
+  <div data-controller="disable-keep-loggin">
+    <div class="mb-3">
+      <%= f.label :password %>
+      <%= f.password_field :password,
+            class: "form-control",
+            data: {
+              disable_keep_loggin_target: 'password',
+              action: 'input->disable-keep-loggin#toggleKeepLogginCheckbox'
+            } %>
+    </div>
 
-  <div class="mb-3">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
+    <div class="mb-3">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation,
+            class: "form-control",
+            data: {
+              disable_keep_loggin_target: 'confirmPassword',
+              action: 'input->disable-keep-loggin#toggleKeepLogginCheckbox'
+            } %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag 'keep_logged_in' do %>
+        <%= check_box_tag 'keep_logged_in', '1', false, data: { disable_keep_loggin_target: 'keepLogginCheckbox' } %>
+        <%= t('.keep_logged_in', default: 'Keep logged in on this browser?') %>
+      <% end %>
+    </div>
   </div>
 
   <%= f.submit "Update Profile", class: "btn btn-primary" %>

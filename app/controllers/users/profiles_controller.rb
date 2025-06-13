@@ -1,7 +1,9 @@
 class Users::ProfilesController < ApplicationController
   before_action :authenticate_user!
   layout 'logged_in'
+
   before_action :set_user, only: [:edit, :update]
+  after_action :keep_current_session, only: [:update]
 
   def edit;end
 
@@ -35,5 +37,9 @@ class Users::ProfilesController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def keep_current_session
+    bypass_sign_in(@user) if @user.saved_change_to_encrypted_password? && params[:keep_logged_in] == '1'
   end
 end
