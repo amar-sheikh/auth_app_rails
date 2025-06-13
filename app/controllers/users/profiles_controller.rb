@@ -3,7 +3,7 @@ class Users::ProfilesController < ApplicationController
   layout 'logged_in'
 
   before_action :set_user, only: [:edit, :update]
-  after_action :invalidate_sessions, only: [:update]
+  after_action :keep_current_session, only: [:update]
 
   def edit;end
 
@@ -39,7 +39,7 @@ class Users::ProfilesController < ApplicationController
     @user = current_user
   end
 
-  def invalidate_sessions
-    @user.forget_me! if @user.saved_change_to_encrypted_password? && params[:log_out_of_all_devices] == '1'
+  def keep_current_session
+    bypass_sign_in(@user) if @user.saved_change_to_encrypted_password? && params[:keep_logged_in] == '1'
   end
 end

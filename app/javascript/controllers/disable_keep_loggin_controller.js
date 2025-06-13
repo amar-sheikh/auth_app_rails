@@ -4,18 +4,17 @@ export default class extends Controller {
   static targets = [
     "password",
     "confirmPassword",
-    "logoutCheckbox",
+    "keepLogginCheckbox",
   ]
 
   connect() {
-    console.log('slakalskdjlasjdlaskjdlkj')
-    this.toggleLogoutCheckbox()
+    this.toggleKeepLogginCheckbox()
   }
 
-  toggleLogoutCheckbox() {
+  toggleKeepLogginCheckbox() {
     const passwordFilled = this.passwordTarget.value.trim() !== ""
     const confirmPasswordFilled = this.confirmPasswordTarget.value.trim() !== ""
 
-    this.logoutCheckboxTarget.disabled = !(passwordFilled && confirmPasswordFilled)
+    this.keepLogginCheckboxTarget.disabled = !(passwordFilled && confirmPasswordFilled)
   }
 }
